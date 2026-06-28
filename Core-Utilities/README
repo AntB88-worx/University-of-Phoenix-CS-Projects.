@@ -1,15 +1,10 @@
-# Core-Utilities 🛠️
+# University of Phoenix - Computer Science Projects 🎓
 
-A collection of foundational Python scripts demonstrating core logic, user inputs, and time-based automation.
+This repository contains academic projects from my Computer Science studies, focusing on Python development and automation.
 
-## 📂 Scripts Included
+## 📂 Key Projects
+- **Inventory Automation:** Python scripts for data processing and metrics.
+- **Core Utilities:** Automation tools for time management and scheduling.
 
-* **calendar_view.py** - A script generated to display structured calendar layouts.
-* **clock.py** - Implements a live-updating digital clock format.
-* **countdown.py** - A custom timer that tracks and counts down to zero from a specified user input.
-
-## 🚀 How to Run
-Run any of the scripts using Python in your terminal:
-```bash
-python clock.py
-```
+## 🚀 Usage
+Clone the repository and run the scripts using Python.
