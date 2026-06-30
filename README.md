@@ -14,13 +14,13 @@ This repository houses a collection of programming assignments, laboratories, an
 ## 📂 Featured Projects
 
 ### 🔹 1. Operational Logic Engine (Basic Operations, User Inputs, Text Data)
-* **Directory:** `./Inventory-Automation`
+- **Directory:** [./Inventory-Automation](./Inventory-Automation)
 * **Language:** Python 🐍
 * **Concepts Demonstrated:** Object-Oriented Programming (OOP), File I/O, Error Handling.
 * **Description:** A program built to simulate data ingestion pipelines, processing raw inputs and outputting structured operational metrics.
 
 ### 🔹 2. Algorithmic Workflows (Calculations, Math Logic, Automated Loops)
-* **Directory:** `./CSS-200T`
+- **Directory:** [./CSS-200T](./CSS-200T)
 * **Language:** Python / Java
 * **Concepts Demonstrated:** Big O Notation, Sorting Algorithms, Data Structures.
 * **Description:** Implementation of optimization scripts designed to find the shortest data pathing routines.
