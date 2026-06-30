@@ -21,6 +21,13 @@ Welcome to my academic directory for the CSS-200T course at the University of Ph
 * **Concepts Demonstrated:** Static methods, array iteration, data-type consistency (`double`), and tabular console spacing.
 * **Functionality:** Takes an array of raw Fahrenheit benchmarks and applies functional equations to map them into Celsius equivalents in a structured table.
 
+#### 🔢 3. Bits & Bytes Storage Converter ( data_converter.py )
+* **Concepts Demonstrated:** Data scale abstraction, type casting, mathematical optimization, and user-input handling.
+* **Functionality:** Dynamically processes raw byte data and translates it into bits, KB, and MB to visualize lower-level hardware storage frameworks.
+
+#### 📝 4. Academic Milestones ( 5-Week-Logic.txt )
+* **Content:** Documented structural logic and progression notes matching the course curriculum.
+
 ---
 
 ### 💻 Setup and Execution
