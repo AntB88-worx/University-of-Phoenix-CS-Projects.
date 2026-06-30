@@ -3,36 +3,37 @@
 Welcome to my central utility directory. This folder contains a collection of foundational Python scripts designed to handle background time-tracking tools, structural loops, and live automation systems.
 
 ### 🧠 Core Learning Objectives
+
 - **Event Loops:** Implementing continuous background execution patterns for real-time applications.
 - **Dynamic Scheduling:** Managing programmatic countdown thresholds and user inputs.
 - **Date Management:** Formatting abstract system-time objects into readable visual displays.
 
-### 📂 Included Course Projects
+## 📂 Included Course Projects
 
-#### 📅 1. Dynamic Calendar View (`calendar_view.py`)
+### 🔹 1. Dynamic Calendar View (calendar_view.py)
+
+- **Language:** Python 🐍
 - **Concepts Demonstrated:** Matrix loops, grid layout alignment, and date package formatting.
-- **Functionality:** Dynamically generates a clean grid layout of specified calendar timelines within the text console.
+- **Description:** Dynamically generates a clean grid layout of specified calendar timelines within the text console.
 
-#### 🕒 2. Digital Clock Framework (`clock.py`)
+### 🔹 2. Digital Clock Framework (clock.py)
+
+- **Language:** Python 🐍
 - **Concepts Demonstrated:** While loops, clear-screen console refreshes, and real-time processing threads.
-- **Functionality:** Establishes a synchronized console readout mirroring a live digital clock display.
+- **Description:** Establishes a synchronized console readout mirroring a live digital clock display.
 
-#### ⏳ 3. Precision Countdown Timer (`countdown.py`)
+### 🔹 3. Precision Countdown Timer (countdown.py)
+
+- **Language:** Python 🐍
 - **Concepts Demonstrated:** Value parsing boundaries, mathematical subtractions, and iterative intervals.
-- **Functionality:** Captures a custom user numeric boundary threshold and ticks backward incrementally to zero.
+- **Description:** Captures a custom user numeric boundary threshold and ticks backward incrementally to zero.
 
-### 💻 Setup and Execution
+## 🚀 How to Run These Projects
 
-To run these script tools locally, navigate to this directory level and trigger them via your command line console terminal:
-
-```bash
-# To launch the live clock application
-python clock.py
-
-# To initialize the custom countdown timer
-python countdown.py
-
-# To draw the custom calendar overview
-python calendar_view.py
-```
-
+1. Navigate into the Core-Utilities directory.
+2. Execute your desired tool using your terminal:
+   ```bash
+   python clock.py
+   python countdown.py
+   python calendar_view.py
+   ```
