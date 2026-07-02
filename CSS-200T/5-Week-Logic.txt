@@ -1,1 +1,20 @@
-// This folder will my logic models and pseudo-code assignments for CSS 200T.
+==========================================================
+UNIVERSITY OF PHOENIX - CSS-200T ACADEMIC PROGRESS LOG
+==========================================================
+
+[WEEK 1] FOUNDATIONS & DIGITAL STORAGE LOGIC
+----------------------------------------------------------
+• Focus: Introduction to computational frameworks.
+• Core Concepts: Studied architectural differences between bits and bytes.
+• Applied Coding: Built a manual data size conversion tool (data_converter.py) 
+  to mathematically handle data scaling across binary structures (1,024-byte bounds).
+
+[WEEK 2] ALGORITHMIC CONTROL STRUCTURES & DATA AUTOMATION
+----------------------------------------------------------
+• Focus: Control flows, type validation, and file parsing.
+• Core Concepts: Implementing loop control mechanics, file streams, and input sanitization.
+• Practical Focus: Integrating robust exception tracking rules to prevent script 
+  failures when reading dynamic external files (applied to parse_metrics.py).
+
+
+"Update academic progress log for Week 1 and Week 2"
