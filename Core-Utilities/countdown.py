@@ -1,36 +1,58 @@
-import datetime
+import sys
 import time
-import os
 
-# 1. Set the target date for your first day of class (e.g., June 29, 2026 at 7:00 AM)
-# Format: datetime.datetime(Year, Month, Day, Hour, Minute)
-target_date = datetime.datetime(2026, 6, 29, 7, 0)
+def run_countdown_timer(total_seconds):
+    print("\n⏳ Commencing Countdown Sequence...")
+    time.sleep(1) # Give the user a moment to prepare
+    
+    # Core Loop: Work backward from the target time down to zero
+    while total_seconds >= 0:
+        # Calculate structural minutes and leftover seconds
+        mins, secs = divmod(total_seconds, 60)
+        
+        # Format the time layout into a standard MM:SS string
+        timer_display = f"{mins:02d}:{secs:02d}"
+        
+        # Direction Line: Print on the same line ('\r') and clear previous text
+        # This keeps the output compact instead of filling the whole screen
+        print(f"\r⏱️ Time Remaining: [{timer_display}] ", end="", flush=True)
+        
+        # Pause the system for exactly 1 second, then subtract from our timer
+        time.sleep(1)
+        total_seconds -= 1
+        
+    # Terminal alert indicator when sequence completes successfully
+    print("\n\n🔔 BEEP! BEEP! Time is up!")
+    print("==========================================================")
 
-while True:
-    os.system('cls' if os.name == 'nt' else 'clear')
+if __name__ == "__main__":
+    # Introductory message explaining the purpose and personal context of the script
+    print("==========================================================")
+    print("         UTILITIES: Precision Countdown Timer             ")
+    print("==========================================================")
+    print("💡 What this is: An interactive terminal timer designed   ")
+    print("   to format mathematical increments into an active MM:SS ")
+    print("   countdown readout without cluttering the screen.       ")
+    print("\n📝 Personal Note: I wanted to test custom user inputs,")
+    print("   mathematical mod operations, and real-time screen ")
+    print("   row overrides in my Python utility portfolio!")
+    print("==========================================================\n")
 
-    # 2. Get the current exact time right now
-    now = datetime.datetime.now()
+    try:
+        # Ingest and sanitize input values to prevent crashes
+        user_input = input("⏰ Enter the countdown duration in total seconds: ")
+        target_time = int(user_input)
+        
+        if target_time <= 0:
+            print("❌ Input Error: Please enter a number greater than zero.")
+        else:
+            run_countdown_timer(target_time)
+            
+    except ValueError:
+        print("❌ Type Error: Mismatched format. Please enter a whole number.")
+    except KeyboardInterrupt:
+        print("\n\n🛑 Timer aborted early by user.")
+        print("==========================================================")
 
-    # 3. Calculate the time difference between now and the target date
-    time_left = target_date - now
 
-    # 4. If the date hasn't passed yet, break down the remaining time
-    if time_left.total_seconds() > 0:
-        days = time_left.days
-        hours, remainder = divmod(time_left.seconds, 3600)
-        minutes, seconds = divmod(remainder, 60)
-
-        # 5. Print a clean visual countdown display
-        print("=========================================")
-        print("     COUNTDOWN TO CORECS CLASSES         ")
-        print("=========================================")
-        print("  {days} Days | {hours} Hours | {minutes} Minutes | {seconds} Seconds  ")
-        print("=========================================")
-        print("\n(Press Ctrl + C in the terminal to stop)")
-    else:
-        print("🎉 The semester has offically started! Good Luck! 🎉")
-        break
-
-    # 6. Pause for 1 second before refreshing the countdown loop
-    time.sleep(1) 
+"Upgrade countdown timer with input sanitization and line-override loops"
