@@ -16,19 +16,21 @@ def display_full_year_calendar(target_year, highlight_date=None):
         current_day = highlight_date.day
         month_name = highlight_date.strftime("%B") # e.g., "July"
         
-        # Split the grid into individual month sections to target only the correct month
-        months_split = full_year_text.split(month_name)
-        
-        if len(months_split) > 1:
+        # Split the grid at the target month name to isolate it safely
+        if month_name in full_year_text:
+            months_split = full_year_text.split(month_name, 1)
+            left_side = months_split[0]
+            right_side = months_split[1]
+            
             # Look for the current day digit inside this month's text block.
             # Handles padding so days like '2' match ' 2 ' and don't break '22'
-            day_pattern = rf"({current_day}\b)"
+            day_pattern = rf"\b{current_day}\b"
             
-            # Replace the plain digit with a distinct bracket visual anchor
-            highlighted_section = re.sub(day_pattern, rf"[{current_day}]", months_split[1], count=1)
+            # Replace the plain digit with a distinct bracket visual anchor inside the right side
+            highlighted_right_side = re.sub(day_pattern, f"[{current_day}]", right_side, count=1)
             
-            # Reconstruct the layout with the new changes applied
-            full_year_text = months_split[0] + month_name + highlighted_section
+            # Reconstruct the layout cleanly as a single string
+            full_year_text = left_side + month_name + highlighted_right_side
 
     print("\n=========================================================================")
     print(f"               📅 FULL 12-MONTH ACADEMIC CALENDAR MATRIX                 ")
