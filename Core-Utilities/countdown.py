@@ -1,58 +1,76 @@
+import os
 import sys
 import time
+from datetime import datetime
 
-def run_countdown_timer(total_seconds):
-    print("\n⏳ Commencing Countdown Sequence...")
-    time.sleep(1) # Give the user a moment to prepare
-    
-    # Core Loop: Work backward from the target time down to zero
-    while total_seconds >= 0:
-        # Calculate structural minutes and leftover seconds
-        mins, secs = divmod(total_seconds, 60)
-        
-        # Format the time layout into a standard MM:SS string
-        timer_display = f"{mins:02d}:{secs:02d}"
-        
-        # Direction Line: Print on the same line ('\r') and clear previous text
-        # This keeps the output compact instead of filling the whole screen
-        print(f"\r⏱️ Time Remaining: [{timer_display}] ", end="", flush=True)
-        
-        # Pause the system for exactly 1 second, then subtract from our timer
-        time.sleep(1)
-        total_seconds -= 1
-        
-    # Terminal alert indicator when sequence completes successfully
-    print("\n\n🔔 BEEP! BEEP! Time is up!")
-    print("==========================================================")
+def run_custom_milestone_counter(target_date, target_label):
+    print(f"\n⏳ Initializing real-time tracking engine for: '{target_label}'...")
+    time.sleep(1.5)
+
+    try:
+        while True:
+            # Direction Line: Fetch the current system date and time to find the delta
+            now = datetime.now()
+            time_remaining = target_date - now
+
+            # If the current system time passes the target date, end the program
+            if time_remaining.total_seconds() <= 0:
+                print(f"\n\n🎉 CONGRATULATIONS! The milestone '{target_label}' has arrived!")
+                print("==========================================================")
+                break
+
+            # Deconstruct the time difference into readable calendar metrics
+            days = time_remaining.days
+            hours, remainder = divmod(time_remaining.seconds, 3600)
+            minutes, seconds = divmod(remainder, 60)
+
+            # Direction Line: Output tracking calculations smoothly on a single line
+            # \r forces the cursor back to the start of the row to override values dynamically
+            print(
+                f"\r🎯 Time Until {target_label}: [{days}d {hours:02d}h {minutes:02d}m {seconds:02d}s] ", 
+                end="", 
+                flush=True
+            )
+
+            # Pause processing for exactly 1 second before refreshing values
+            time.sleep(1)
+
+    except KeyboardInterrupt:
+        print(f"\n\n🛑 Tracking engine for '{target_label}' paused by user.")
+        print("==========================================================")
 
 if __name__ == "__main__":
     # Introductory message explaining the purpose and personal context of the script
     print("==========================================================")
-    print("         UTILITIES: Precision Countdown Timer             ")
+    print("       UTILITIES: Dynamic Custom Milestone Engine        ")
     print("==========================================================")
-    print("💡 What this is: An interactive terminal timer designed   ")
-    print("   to format mathematical increments into an active MM:SS ")
-    print("   countdown readout without cluttering the screen.       ")
-    print("\n📝 Personal Note: I wanted to test custom user inputs,")
-    print("   mathematical mod operations, and real-time screen ")
-    print("   row overrides in my Python utility portfolio!")
+    print("💡 What this is: An advanced tracking utility that parses")
+    print("   custom user date strings and calculates a live timeline")
+    print("   delta down to the second against your system clock.   ")
+    print("\n📝 Personal Note: I expanded this script to dynamically")
+    print("   process any future user date—like my semester deadline")
+    print("   on 12-21-2026—to showcase input parsing and error tracking!")
     print("==========================================================\n")
 
+    print("📋 Instructions: Enter your deadline target using the MM-DD-YYYY format.")
+    print("   Example: For the end of the semester, type: 12-21-2026\n")
+
+    # Ingest and validate the custom target date input
     try:
-        # Ingest and sanitize input values to prevent crashes
-        user_input = input("⏰ Enter the countdown duration in total seconds: ")
-        target_time = int(user_input)
+        user_date_input = input("📆 Enter a future milestone date (MM-DD-YYYY): ")
+        milestone_name = input("🏷️ Give this milestone a name (e.g., Semester End): ")
         
-        if target_time <= 0:
-            print("❌ Input Error: Please enter a number greater than zero.")
+        # Convert the user's text string into an official Python datetime object
+        parsed_target_date = datetime.strptime(user_date_input, "%m-%d-%Y")
+        
+        # Verify the custom deadline is actually set in the future
+        if parsed_target_date < datetime.now():
+            print("❌ Input Error: That date has already passed! Please input a future target.")
         else:
-            run_countdown_timer(target_time)
+            run_custom_milestone_counter(parsed_target_date, milestone_name)
             
     except ValueError:
-        print("❌ Type Error: Mismatched format. Please enter a whole number.")
-    except KeyboardInterrupt:
-        print("\n\n🛑 Timer aborted early by user.")
-        print("==========================================================")
+        print("❌ Format Error: Invalid date structure. Ensure you use the exact MM-DD-YYYY format.")
 
 
-"Upgrade countdown timer with input sanitization and line-override loops"
+"Refactor countdown script to dynamically parse custom user dates and labels"
