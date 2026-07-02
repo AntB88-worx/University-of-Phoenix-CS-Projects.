@@ -60,15 +60,14 @@ if __name__ == "__main__":
         user_date_input = input("📆 Enter a future milestone date (MM-DD-YYYY): ")
         milestone_name = input("🏷️ Give this milestone a name (e.g., Semester End): ")
         
-        # Convert the user's text string into an official Python datetime object
-        parsed_target_date = datetime.strptime(user_date_input, "%m-%d-%Y")
-        
-        # Verify the custom deadline is actually set in the future
-        if parsed_target_date < datetime.now():
-            print("❌ Input Error: That date has already passed! Please input a future target.")
-        else:
-            run_custom_milestone_counter(parsed_target_date, milestone_name)
-            
+        from datetime import datetime
+# Quick test of the parsing logic to ensure no runtime errors
+try:
+    test_date = datetime.strptime("12-21-2026", "%m-%d-%Y")
+    print(f"Success: {test_date}")
+except ValueError:
+    print("Error")
+
     except ValueError:
         print("❌ Format Error: Invalid date structure. Ensure you use the exact MM-DD-YYYY format.")
 
