@@ -7,7 +7,7 @@ This folder serves as an independent engineering portfolio showcasing how I leve
 ---
 
 ### 🚀 AI Cloud Engineering & Technical Objectives
-* **Persistent Cloud Foundations:** Transitioning applications from temporary memory structures to secure, relational databases (SQL) to ensure data persistence, durability, and durability.
+* **Persistent Cloud Foundations:** Transitioning applications from temporary memory structures to secure, relational databases (SQL) to ensure data persistence, durability, and resilience.
 * **Secure Data Pipelines:** Structuring robust data ingestion workflows with parameterized database interactions to maintain enterprise-level security.
 * **Architectural Diversity:** Selecting optimal engineering models (Advanced OOP vs. Procedural Utility) based strictly on execution environments, scalability requirements, and cloud system overhead constraints.
 
@@ -15,21 +15,21 @@ This folder serves as an independent engineering portfolio showcasing how I leve
 
 ### 🛠️ Portfolio Projects & Design Decisions
 
-#### 🐍 1. Relational SQL Database & OOP Pipeline Engine (`inventory_manager.py`)
+#### 🐍 1. Relational SQL Database & OOP Pipeline Engine ([`inventory_manager.py`](inventory_manager.py))
 * **The Architecture:** Advanced Object-Oriented Programming (OOP) paired with a Persistent SQLite3 Engine.
 * **The Solution:** A decoupled inventory control pipeline that maps unstructured data streams into structural SQL database tables. It creates a local persistent ledger (`warehouse_ecosystem.db`), utilizes parameterized queries to neutralize SQL Injection security threats, and builds dynamic analytics data structures using `@property` methods.
 * **AI Cloud Alignment:** Direct demonstration of *Data Engineering Fundamentals*. Relational data pipelines and secure database sanitization structures are the non-negotiable prerequisites for fueling downstream Cloud Analytics Warehouses and AI Retrieval-Augmented Generation (RAG) models.
 * **Tech Used:** `Python 3.x`, `SQL (SQLite3)`, `Relational Database Design`, `Parameterized Security`, `OOP Encapsulation`
 * **Status:** 🚀 *Production Ready / Database Persistent*
 
-#### 🐍 2. High-Efficiency Metrics Parsing Script (`parse_metrics.py`)
+#### 🐍 2. High-Efficiency Metrics Parsing Script ([`parse_metrics.py`](parse_metrics.py))
 * **The Architecture:** Lightweight Procedural Scripting Framework.
-* **The Solution:** A high-speed utility script built to instantly stream, parse, and categorize multi-category raw inventory spreadsheets, spitting out structured operational summaries while compiling out-stream alert files (`restock_report.txt`).
+* **The Solution:** A high-speed utility script built to instantly stream, parse, and categorize multi-category raw inventory spreadsheets, spitting out structured operational summaries while compiling out-stream alert files ([`restock_report.txt`](restock_report.txt)).
 * **AI Cloud Alignment:** Demonstrates the ability to create hyper-fast, low-overhead edge utility scripts to format raw text logs before transmitting them to centralized cloud data warehouses.
 * **Tech Used:** `Python 3.x`, `Procedural Scripting`, `Streaming File I/O`, `Defensive Programming`
 * **Status:** 🚀 *Production Ready / Optimized*
 
-#### ☕ 3. Enterprise Order Fulfillment State Machine (`FulfillmentTracker.java`)
+#### ☕ 3. Enterprise Order Fulfillment State Machine ([`FulfillmentTracker.java`](FulfillmentTracker.java))
 * **The Architecture:** Strict Enterprise Object-Oriented Design.
 * **The Solution:** A robust tracking application mapping physical warehouse workflows directly to data properties. It features a strict regex validation layer at initialization and an internal state sequence enforcer to prevent invalid operational tracking milestones.
 * **AI Cloud Alignment:** Exercises the deep, cross-functional understanding of backend enterprise architectures. This ensures smooth data compatibility when integrating large, legacy corporate systems with modern cloud infrastructure.
