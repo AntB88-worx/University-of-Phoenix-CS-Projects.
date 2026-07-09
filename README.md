@@ -26,7 +26,7 @@ This repository houses a collection of programming assignments, laboratories, an
 * **Description:** Implementation of optimization scripts designed to find the shortest data pathing routines.
 
 ### 🔹 3. Network Infrastructure Analysis (DNS, Web Infrastructure, Search Engine Logic)
-- **Directory:** ./Network-Infrastructure
+- **Directory:** [./Network-Infrastructure](./Network-Infrastructure)
 - **Language:** Python 🐍
 - **Concepts Demonstrated:** DNS Resolution, Network Sockets, Search Engine Infrastructure.
 - **Description:** A network analysis utility that demonstrates how search engine web crawlers rely on rapid DNS resolution and distributed IP infrastructure to index the web efficiently. Inspired by academic discussions on why core internet protocols are foundational for IT professionals.
