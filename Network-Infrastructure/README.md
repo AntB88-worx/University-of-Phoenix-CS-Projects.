@@ -2,17 +2,17 @@
 
 An automated network analysis tool that bridges the gap between core internet routing layers and corporate web search visibility, translating theoretical network concepts into an enterprise infrastructure solution.
 
-## 💼 Recruiter Executive Briefing (FAQ)
+## 📋 Project Context: Architectural Purpose & Value
 
-### ❓ What real-world business problem does this project solve?
-Corporate websites rely heavily on search engine crawlers (like Googlebot) to index their pages and generate customer traffic. If local DNS zone configurations, firewalls, or regional nameservers misbehave, these external web crawlers cannot find the enterprise servers. This script serves as a proactive infrastructure health check to verify that external search discovery networks are fully resolvable from our network segment.
+### 🔍 Business Challenge & Solution
+Corporate websites rely heavily on search engine crawlers (like Googlebot) to index their pages and generate organic customer traffic. If local DNS zone configurations, firewalls, or regional nameservers misbehave, these external web crawlers cannot locate corporate servers. This project establishes an automated, proactive infrastructure health check that verifies external search discovery networks are fully resolvable from our local network segment, protecting corporate web visibility.
 
-### ❓ How does the technology work under the hood?
-The script abstracts an operating system's low-level DNS resolution routine. It targets Python’s native network socket layer (`socket.gethostbyname`) to query primary domain servers. It simulates a client-to-nameserver request to dynamically map the human-readable domains utilized by automated web indexes into machine-readable IP vectors.
+### ⚙️ Operational Mechanics
+The script automates low-level DNS resolution routines by interacting directly with Python’s native network socket layer (`socket.gethostbyname`). It simulates active client-to-nameserver requests to dynamically map the human-readable domains utilized by automated web indexes into machine-readable IP vectors, replacing time-consuming manual diagnostics.
 
-### ❓ What are the core IT and business benefits?
-- **Proactive Latency Monitoring:** Allows network administrators to spot DNS resolution bottlenecks before they impact website SEO metrics and cloud-routing efficiency.
-- **Enterprise Failover Validation:** Utilizes robust programming catch blocks (`socket.gaierror`) to gracefully log configuration errors, identifying network boundary drops or broken external routing tables without crashing corporate diagnostic toolchains.
+### 📈 Enterprise Value & Resilience
+- **Proactive Latency Monitoring:** Allows network administrators to identify DNS resolution bottlenecks before they impact website SEO metrics and cloud-routing efficiency.
+- **Fault-Tolerant Engineering:** Utilizes robust programming catch blocks (`socket.gaierror`) to gracefully isolate and log configuration errors, identifying network boundary drops or broken external routing tables without crashing critical diagnostic toolchains.
 
 ---
 
