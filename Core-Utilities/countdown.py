@@ -3,73 +3,85 @@ import sys
 import time
 from datetime import datetime
 
-def run_custom_milestone_counter(target_date, target_label):
-    print(f"\n⏳ Initializing real-time tracking engine for: '{target_label}'...")
-    time.sleep(1.5)
+def run_custom_milestone_counter(target_date, target_label, hourly_fine, handling_buffer_hours):
+    # 1. BUFFER CORRECTION: Calculate the absolute drop-dead execution window
+    true_deadline = target_date
+    buffer_seconds = handling_buffer_hours * 3600
+    
+    print(f"\n⏳ Booting Risk Tracking Engine for: '{target_label}'...")
+    time.sleep(1)
 
     try:
         while True:
-            # Direction Line: Fetch the current system date and time to find the delta
             now = datetime.now()
-            time_remaining = target_date - now
+            time_remaining = true_deadline - now
+            total_seconds_left = time_remaining.total_seconds()
 
-            # If the current system time passes the target date, end the program
-            if time_remaining.total_seconds() <= 0:
-                print(f"\n\n🎉 CONGRATULATIONS! The milestone '{target_label}' has arrived!")
+            # SLA BREACH: Handle what happens when the operational milestone is missed
+            if total_seconds_left <= 0:
+                print(f"\n\n🚨 SLA BREACH: Milestone '{target_label}' deadline passed!")
+                print(f"💰 Financial Loss Incurred: ${hourly_fine:,.2f} baseline breach penalty.")
                 print("==========================================================")
                 break
 
-            # Deconstruct the time difference into readable calendar metrics
+            # Deconstruct calendar metrics
             days = time_remaining.days
             hours, remainder = divmod(time_remaining.seconds, 3600)
             minutes, seconds = divmod(remainder, 60)
+            
+            # 2. RISK MATRIX LOGIC: Dynamically assess system risk levels based on time remaining
+            total_hours_left = total_seconds_left / 3600
+            
+            if total_hours_left <= handling_buffer_hours:
+                risk_status = "❌ BREACH IMMINENT (Inside Buffer Window)"
+            elif total_hours_left <= 2:
+                risk_status = "⚠️  CRITICAL RISK (Under 2hr Window)"
+            elif total_hours_left <= 24:
+                risk_status = "⚡ MODERATE RISK (Under 24hr Window)"
+            else:
+                risk_status = "✅ LOW RISK (Flow Normal)"
 
-            # Direction Line: Output tracking calculations smoothly on a single line
-            # \r forces the cursor back to the start of the row to override values dynamically
+            # 3. FINANCIAL ANALYSIS LAYER: Project compounding financial liability
+            current_risk_cost = hourly_fine if total_hours_left <= handling_buffer_hours else 0.00
+
+            # Output tracking metrics cleanly using a single-line terminal rewrite wrapper (\r)
             print(
-                f"\r🎯 Time Until {target_label}: [{days}d {hours:02d}h {minutes:02d}m {seconds:02d}s] ", 
+                f"\r🎯 Time Until {target_label}: [{days}d {hours:02d}h {minutes:02d}m {seconds:02d}s] | "
+                f"Status: {risk_status} | Exposure: ${current_risk_cost:,.2f} ", 
                 end="", 
                 flush=True
             )
 
-            # Pause processing for exactly 1 second before refreshing values
             time.sleep(1)
 
     except KeyboardInterrupt:
-        print(f"\n\n🛑 Tracking engine for '{target_label}' paused by user.")
-        print("==========================================================")
+        print(f"\n\n🛑 Tracking engine for '{target_label}' safely paused.")
 
 if __name__ == "__main__":
-    # Introductory message explaining the purpose and personal context of the script
     print("==========================================================")
-    print("       UTILITIES: Dynamic Custom Milestone Engine        ")
-    print("==========================================================")
-    print("💡 What this is: An advanced tracking utility that parses")
-    print("   custom user date strings and calculates a live timeline")
-    print("   delta down to the second against your system clock.   ")
-    print("\n📝 Personal Note: I expanded this script to dynamically")
-    print("   process any future user date—like my semester deadline")
-    print("   on 12-21-2026—to showcase input parsing and error tracking!")
+    print("      LOGISTICS ENGINE: Operational Milestone Analyzer    ")
     print("==========================================================\n")
 
-    print("📋 Instructions: Enter your deadline target using the MM-DD-YYYY format.")
-    print("   Example: For the end of the semester, type: 12-21-2026\n")
-
-    # Ingest and validate the custom target date input
+    # Ingest and validate custom target date structures
     try:
-        user_date_input = input("📆 Enter a future milestone date (MM-DD-YYYY): ")
-        milestone_name = input("🏷️ Give this milestone a name (e.g., Semester End): ")
+        user_date_input = input("📆 Enter target milestone date (MM-DD-YYYY): ").strip()
+        milestone_name = input("🏷️  Enter milestone label (e.g., Target Trailer Pull): ").strip()
         
-        from datetime import datetime
-# Quick test of the parsing logic to ensure no runtime errors
-try:
-    test_date = datetime.strptime("12-21-2026", "%m-%d-%Y")
-    print(f"Success: {test_date}")
-except ValueError:
-    print("Error")
+        # 4. DATA INPUT REFACTORING: Parse string to date object
+        target_date = datetime.strptime(user_date_input, "%m-%d-%Y")
+        
+        # Combine date with end of business day (5:00 PM / 17:00) as a standard logistics anchor
+        target_date = target_date.replace(hour=17, minute=0, second=0)
+
+        # Operational business variables
+        fine_input = input("💰 Enter SLA breach penalty fee ($ value, e.g., 500): ").strip()
+        hourly_fine = float(fine_input) if fine_input.isdigit() else 0.00
+        
+        buffer_input = input("⏱️  Enter processing buffer time required (Hours, e.g., 3): ").strip()
+        handling_buffer_hours = int(buffer_input) if buffer_input.isdigit() else 0
+
+        # Boot engine
+        run_custom_milestone_counter(target_date, milestone_name, hourly_fine, handling_buffer_hours)
 
     except ValueError:
-        print("❌ Format Error: Invalid date structure. Ensure you use the exact MM-DD-YYYY format.")
-
-
-"Refactor countdown script to dynamically parse custom user dates and labels"
+        print("\n❌ Input Error: Data structure invalid. Ensure you enter parameters accurately.")
