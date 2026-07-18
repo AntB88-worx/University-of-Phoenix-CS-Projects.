@@ -1,28 +1,27 @@
-import sys
-
 def optimize_edi_payload():
+    # RESTORED LOW-LEVEL STORAGE FRAMEWORK STUDY BANNERS
     print("==========================================================")
     print("       DATA SYSTEMS: EDI Manifest Transmission Analyzer   ")
-    print("==========================================================\n")
-    print("💡 Purpose: Validates electronic transaction document size")
-    print("   boundaries to prevent server timeouts in legacy WMS.")
+    print("==========================================================")
+    print("💡 What this is: An scale abstraction tool translating    ")
+    print("   raw byte packets into granular lower-level bit scales. ")
+    print("\n📝 Personal Note: I created this to demonstrate dynamic ")
+    print("   user mathematical optimization models and strict type  ")
+    print("   casting logic exceptions when processing raw storage!")
     print("==========================================================\n")
 
     try:
-        # Ingesting raw document size context
-        raw_input = input("📥 Enter electronic shipping manifest payload size (In Bytes): ").strip()
-        if not raw_input.isdigit():
+        user_input = input("📥 Enter electronic shipping manifest payload size (In Bytes): ").strip()
+        if not user_input.isdigit():
             raise ValueError
             
-        bytes_size = int(raw_input)
+        bytes_size = int(user_input)
         
-        # 1. HARDWARE STORAGE SCALE CONVERSIONS
+        # Mathematical abstraction scaling conversions
         bits_size = bytes_size * 8
         kb_size = bytes_size / 1024
         mb_size = kb_size / 1024
 
-        # 2. LEGACY SYSTEM OVERHEAD VERIFICATION MATRIX
-        # Real-world constraint: Many older AS400 mainframe EDI routers reject payloads over 2 MB
         if mb_size > 2.0:
             transmission_status = "❌ BLOCKED: Payload exceeds legacy 2MB server transfer threshold."
             optimization_action = "🛠️ ACTION REQUIRED: Fragment file into separate batches."
@@ -30,7 +29,6 @@ def optimize_edi_payload():
             transmission_status = "✅ APPROVED: Payload falls safely within transmission profiles."
             optimization_action = "🚀 READY: Safe to enqueue to carrier routing network pipeline."
 
-        # 3. DISPLAY AUTOMATION BREAKDOWN
         print("\n=========================================================")
         print("             📑 TRANSMISSION INTEGRITY AUDIT             ")
         print("=========================================================")
