@@ -1,13 +1,20 @@
 import time
 
 def calculate_shift_productivity():
+    # RESTORED PERSONAL CONTEXT COMMENT BLOCK
     print("==========================================================")
     print("      LOGISTICS WORKFORCE: Shift Productivity Engine      ")
+    print("==========================================================")
+    print("💡 What this is: An advanced processing utility that     ")
+    print("   evaluates arrays of metrics, sums throughput logs, and ")
+    print("   flags individual outliers below performance goals.    ")
+    print("\n📝 Personal Note: I am enhancing this list script to   ")
+    print("   learn about array aggregations, floating-point rules, ")
+    print("   and automated loop structures using python lists!    ")
     print("==========================================================\n")
     
-    # 1. DATA COLLECTION: Ingesting raw items-picked-per-hour (PPH) metric logs
     picker_metrics = []
-    print("Enter picker throughput scores (Units per hour). Type 'done' to finalize shift:")
+    print("📋 Instructions: Enter picker metrics (Units/Hour). Type 'done' to calculate:")
     
     while True:
         user_input = input(" 📥 Enter PPH Metric: ").strip()
@@ -22,11 +29,11 @@ def calculate_shift_productivity():
         print("\n🛑 Shift aborted: No labor performance entries logged.")
         return
 
-    # 2. ALGORITHMIC PROCESSING: Summation and average calculation
+    # Core mathematical array aggregations
     total_throughput = sum(picker_metrics)
     shift_average = total_throughput / len(picker_metrics)
     
-    # 3. PERFORMANCE TIER MATRIX: Maps averages directly to operational SLA tiers
+    # Conditional branching based on performance thresholds
     if shift_average >= 120:
         performance_tier = "🚀 EXCEEDS SLA (High Efficiency)"
     elif shift_average >= 90:
@@ -36,7 +43,6 @@ def calculate_shift_productivity():
     else:
         performance_tier = "🚨 CRITICAL UNDERPERFORMANCE (Action Required)"
 
-    # 4. STRUCTURED EXCEPTION REPORTING: Flag individual anomalies under threshold
     print("\n=========================================================")
     print("             📊 SHIFT PERFORMANCE RECAP REPORT           ")
     print("=========================================================")
@@ -59,4 +65,3 @@ def calculate_shift_productivity():
 
 if __name__ == "__main__":
     calculate_shift_productivity()
-
