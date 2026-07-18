@@ -33,13 +33,17 @@ Welcome to my academic directory for the CSS-200T course at the University of Ph
 ### 💻 Setup and Execution
 To run these files locally on your machine, navigate to this directory and execute the following commands via your terminal:
 
-```bash
-# To run the Control Tower Engine
+```python
+# To run the Python Scripts
+python grade_calculator.py
+python data_converter.py
 python clock.py
-
-# To run the Operational Milestone Analyzer
 python countdown.py
-
-# To run the Enterprise Capacity Planner
 python calendar_view.py
+```
+
+```java
+// To compile and run the Java Script
+javac TempConverter.java
+java TempConverter
 ```
