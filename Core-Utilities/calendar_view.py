@@ -4,85 +4,100 @@ import re
 import time
 from datetime import datetime
 
-def display_full_year_calendar(target_year, highlight_date=None):
-    # Set up a text calendar starting on Sunday
+def display_logistics_planner(target_year, highlight_date=None, operational_milestone=None):
     cal = calendar.TextCalendar(calendar.SUNDAY)
-    
     # Generate the standard 12-month raw text grid for the target year
     full_year_text = cal.formatyear(target_year, w=2, l=1, c=6, m=3)
     
-    # Core Logic Feature: If the year matches our current year, highlight today's date
-    if highlight_date and target_year == highlight_date.year:
-        current_day = highlight_date.day
-        month_name = highlight_date.strftime("%B") # e.g., "July"
+    # 1. FIXED HOLIDAY MATRIX: Define federal shipping carrier holiday dates (Month, Day)
+    CARRIER_HOLIDAYS = {
+        "January":,    # New Year's Day
+        "July":,       # Independence Day
+        "November":,  # Thanksgiving (Approximate fixed shipping block)
+        "December": [25]   # Christmas Day
+    }
+
+    # 2. MONTH-BY-MONTH PARSING LOGIC: Inject operations metadata dynamically
+    for month_num in range(1, 13):
+        month_name = calendar.month_name[month_num]
+        if month_name not in full_year_text:
+            continue
+            
+        # Isolate the text block of the specific month to prevent accidental global text replacement
+        months_split = full_year_text.split(month_name, 1)
+        left_side, right_side = months_split[0], months_split[1]
         
-        # Split the grid at the target month name to isolate it safely
-        if month_name in full_year_text:
-            months_split = full_year_text.split(month_name, 1)
-            left_side = months_split[0]
-            right_side = months_split[1]
-            
-            # Look for the current day digit inside this month's text block.
-            # Handles padding so days like '2' match ' 2 ' and don't break '22'
-            day_pattern = rf"\b{current_day}\b"
-            
-            # Replace the plain digit with a distinct bracket visual anchor inside the right side
-            highlighted_right_side = re.sub(day_pattern, f"[{current_day}]", right_side, count=1)
-            
-            # Reconstruct the layout cleanly as a single string
-            full_year_text = left_side + month_name + highlighted_right_side
+        # Split right side again to ensure we only manipulate the current month's grid row block
+        next_months = list(calendar.month_name)[month_num+1:]
+        break_point = len(right_side)
+        for next_m in next_months:
+            if next_m in right_side:
+                break_point = right_side.find(next_m)
+                break
+        
+        current_month_block = right_side[:break_point]
+        remaining_months_block = right_side[break_point:]
+
+        # A. HIGHLIGHT LIVE CLOCK: Wrap today's active date in bracket indicators [ ]
+        if highlight_date and target_year == highlight_date.year and highlight_date.month == month_num:
+            current_day = highlight_date.day
+            current_month_block = re.sub(rf"\b{current_day}\b", f"[{current_day}]", current_month_block, count=1)
+
+        # B. OVERLAY MILESTONE TARGETS: Wrap custom operations milestones in braces { }
+        if operational_milestone and target_year == operational_milestone.year and operational_milestone.month == month_num:
+            m_day = operational_milestone.day
+            current_month_block = re.sub(rf"\b{m_day}\b", f"{{{m_day}}}", current_month_block, count=1)
+
+        # C. CARRIER HOLIDAY INJECTION: Tag freight shipping deadlines with an 'H' prefix
+        if month_name in CARRIER_HOLIDAYS:
+            for holiday_day in CARRIER_HOLIDAYS[month_name]:
+                current_month_block = re.sub(rf"\b{holiday_day}\b", f"H{holiday_day}", current_month_block, count=1)
+
+        # Reconstruct the layout string cleanly after handling the rules
+        full_year_text = left_side + month_name + current_month_block + remaining_months_block
+
+    # 3. PEAK SEASON CAPACITY ALERT: Flag high-risk distribution months (November & December)
+    # Uses text substitution to add alert tags directly to the month text headers
+    full_year_text = full_year_text.replace("November", "November ⚠️[PEAK CAPACITY]")
+    full_year_text = full_year_text.replace("December", "December ⚠️[PEAK CAPACITY]")
 
     print("\n=========================================================================")
-    print(f"               📅 FULL 12-MONTH ACADEMIC CALENDAR MATRIX                 ")
+    print(f"             🏭 ENTERPRISE SUPPLY CHAIN CAPACITY PLANNER: {target_year}  ")
     print("=========================================================================")
     print(full_year_text)
     print("=========================================================================")
+    print(" 🛠️  LEGEND:  [xx] = Current Day | {xx} = Target Milestone | Hxx = Carrier Holiday")
+    print("=========================================================================")
 
 if __name__ == "__main__":
-    # Introductory message explaining the purpose and personal context of the script
     print("==========================================================")
-    print("         UTILITIES: 12-Month Academic Planner             ")
-    print("==========================================================")
-    print("💡 What this is: A terminal dashboard that structures an   ")
-    print("   entire annual calendar matrix and uses string logic    ")
-    print("   to isolate and highlight the current day.               ")
-    print("\n📝 Personal Note: I updated this tool to display a complete")
-    print("   12-month overview so I can visually map out my whole   ")
-    print("   academic year at a glance!")
+    print("       LOGISTICS UTILITIES: Annual Capacity Planner       ")
     print("==========================================================\n")
-
-    # Fetch live clock metrics right now
+    
     today = datetime.now()
     
-    print(f"🔄 Step 1: Connecting to system clock... Highlighting today's date.")
-    time.sleep(1.5)
-    
-    # Clear screen to show the clean year layout
+    # Ingest custom milestone input to show real-world time-horizon path planning
+    milestone_date = None
+    ms_input = input("🎯 Enter a specific operational deadline date (MM-DD-YYYY) or Enter to skip: ").strip()
+    if ms_input:
+        try:
+            milestone_date = datetime.strptime(ms_input, "%m-%d-%Y")
+            print(f"✅ Milestone loaded: '{milestone_date.strftime('%B %d, %Y')}' locked into engine.")
+        except ValueError:
+            print("⚠️  Invalid format. Proceeding with baseline calendar display.")
+            time.sleep(1)
+
+    # Clear terminal screen dynamically across architectures
     os.system('cls' if os.name == 'nt' else 'clear')
-    display_full_year_calendar(today.year, highlight_date=today)
+    display_logistics_planner(today.year, highlight_date=today, operational_milestone=milestone_date)
     
-    print(f"\n💡 Notice: Today's date is wrapped in brackets [ ] within your current month.")
-    print("\n📋 Custom Target Search:")
-    print("   Want to plan out a different year? (Example: 2027)")
-    
-    # Handle user inputs safely using a try/except rule block
+    # Allow safe exploratory testing for future years
     try:
-        user_year_input = input("📆 Enter a 4-digit target year (or press Enter to skip): ").strip()
-        if user_year_input:
-            searched_year = int(user_year_input)
-            
-            if searched_year < 1 or searched_year > 9999:
-                print("❌ Input Error: Please enter a standard calendar year.")
-            else:
+        user_year = input("\n📆 Enter a different 4-digit year to audit future capacity (or Enter to exit): ").strip()
+        if user_year:
+            searched_year = int(user_year)
+            if 1 <= searched_year <= 9999:
                 os.system('cls' if os.name == 'nt' else 'clear')
-                print(f"🔍 Displaying full planning layout for requested year: {searched_year}")
-                display_full_year_calendar(searched_year, highlight_date=today)
-                
+                display_logistics_planner(searched_year, highlight_date=today, operational_milestone=milestone_date)
     except ValueError:
-        print("❌ Type Error: Mismatched format. Please enter a valid numerical year.")
-        
-    print("\n🏁 Annual calendar processing complete.")
-    print("==========================================================")
-
-
-"Update calendar view to output full 12-month grid with dynamic day highlighting"
+        print("❌ Format Error: Please enter a valid numerical 4-digit year.")
