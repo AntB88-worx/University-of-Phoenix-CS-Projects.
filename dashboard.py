@@ -38,13 +38,15 @@ if df.empty:
 else:
     # 3. High-Density High-Level Metrics Layout
     total_events = len(df)
-    total_restocks = len(df[df['status'] == '📉 RESTOCK REQ'])
-    total_inbound = len(df[df['status'] == '📈 INBOUND'])
+    # UPDATED: Match the anomaly check string from lambda_stream.py
+    total_anomalies = len(df[df['status'] == '📉 ANOMALY CHK'])
+    # UPDATED: Match the optimal string from lambda_stream.py
+    total_optimal = len(df[df['status'] == '📈 OPTIMAL'])
     
     col1, col2, col3 = st.columns(3)
     col1.metric("📦 Total Logged Events", total_events)
-    col2.metric("📉 Active Restock Requests", total_restocks, delta="-Alerts active", delta_color="inverse")
-    col3.metric("📈 Inbound Freight Actions", total_inbound)
+    col2.metric("🚨 Active Weather Anomalies", total_anomalies, delta="-Alerts active", delta_color="inverse")
+    col3.metric("📈 Optimal Freight Conditions", total_optimal)
 
     # 4. Interactive Data Visualizations
     st.markdown("---")
