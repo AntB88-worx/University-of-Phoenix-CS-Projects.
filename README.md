@@ -1,6 +1,7 @@
 # Portfolio: Computer Science & Cloud Systems Engineering 🎓
 
 Welcome to my software engineering portfolio. This repository transitions from foundational programming concepts to modern DevOps pipelines and automated cloud infrastructure.
+
 ![DevOps CI Pipeline](https://github.com)
 
 ---
