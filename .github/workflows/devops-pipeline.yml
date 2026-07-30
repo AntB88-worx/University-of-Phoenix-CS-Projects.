@@ -50,4 +50,3 @@ jobs:
       run: |
         cd Phase1-Container-Stream
         docker build -t inventory-stream-pipeline:latest .
-
