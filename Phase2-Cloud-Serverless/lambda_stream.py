@@ -1,31 +1,34 @@
 import json
 import time
-import random
+import urllib.request
 
 def lambda_handler(event, context):
-    """
-    Standard AWS Lambda entry point. 
-    AWS automatically feeds incoming triggers into the 'event' argument.
-    """
-    print("🛰️ AWS Lambda Logistics Stream Triggered!")
+    print("🛰️ Ingesting Real-World Logistics Weather Telemetry!")
     
-    items = ["Laptop Pro 14", "Quantum Mouse", "OLED Monitor 27", "Mechanical Keyboard", "USB-C Hub"]
-    warehouses = ["WH-East", "WH-West", "WH-Central"]
+    # Live REST API endpoint pulling from the Memphis International Airport (FedEx Global Hub)
+    api_url = "https://open-meteo.com"
     
-    payload = {
-        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-        "item": random.choice(items),
-        "warehouse": random.choice(warehouses),
-        "quantity_delta": random.randint(-50, 100)
-    }
-    
-    payload["status"] = "📉 RESTOCK REQ" if payload["quantity_delta"] < 0 else "📈 INBOUND"
-    print(f"📦 Generated Payload: {json.dumps(payload)}")
-    
-    return {
-        'statusCode': 200,
-        'body': json.dumps({
-            'message': 'Logistics event processed successfully!',
-            'data': payload
-        })
-    }
+    try:
+        # Perform live HTTP network fetch
+        with urllib.request.urlopen(api_url, timeout=5) as response:
+            raw_data = json.loads(response.read().decode())
+            
+        current_metrics = raw_data.get("current", {})
+        temperature = current_metrics.get("temperature_2m", 20.0)
+        humidity = current_metrics.get("relative_humidity_2m", 50)
+        
+        # Build live, production-grade telemetry payload
+        payload = {
+            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "item": "Global Logistics Temperature Monitor",
+            "warehouse": "FedEx-Memphis-Hub",
+            "quantity_delta": int(temperature), # Pass temperature value as our delta metrics metric
+            "status": "📉 ANOMALY CHK" if temperature > 30 or temperature < 0 else "📈 OPTIMAL"
+        }
+        
+        print(f"📦 Successfully Ingested Payload: {json.dumps(payload)}")
+        return {"statusCode": 200, "body": json.dumps(payload)}
+        
+    except Exception as e:
+        print(f"❌ Public API Ingestion Failure: {e}")
+        return {"statusCode": 500, "body": str(e)}
