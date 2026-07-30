@@ -1,34 +1,34 @@
-# Portfolio: Computer Science & Systems Engineering 🎓
+# Portfolio: Computer Science & Cloud Systems Engineering 🎓
 
-A detailed overview of projects highlighting the transition from local Python/Docker automation to AWS Cloud infrastructure.
+Welcome to my software engineering portfolio. This repository transitions from foundational programming concepts to modern DevOps pipelines and automated cloud infrastructure.
 
-## 🚀 Technical Progression
+---
 
-### Phase 1: Local Containerized Streams (`/Phase1-Container-Stream`)
-* **Core Tasks:** Developed Python inventory streams with in-memory data handling.
-* **DevOps:** Implemented containerization via Docker and automated deployment with Bash.
+## 📂 Core Engineering Projects
 
-### Phase 2: Cloud Infrastructure & Serverless (`/Phase2-Cloud-Serverless`)
-* **Infrastructure as Code:** Built automated AWS provisioning using Terraform (`main.tf`).
-* **Serverless Engineering:** Deployed Lambda functions (`lambda_stream.py`) with S3 and DynamoDB integration.
+### 🛰️ [Phase 1: Local Containerized Streams](./Phase1-Container-Stream)
+* **Focus:** Linux CLI optimization, in-memory processing, and containerization literacy.
+* **Tech Stack:** Python, Docker, Bash Automation.
+* **Impact:** Eliminated physical disk-I/O bottlenecks by refactoring local script files into in-memory data streams wrapped in a platform-agnostic Docker container.
 
-## 📂 Key Competencies
-* **Software Engineering:** Python (OOD, File I/O), Java (Data Structures).
-* **Networking/Automation:** Socket programming, web crawling, and automated scripting.
+### ☁️ [Phase 2: Automated Serverless Infrastructure](./Phase2-Cloud-Serverless)
+* **Focus:** Cloud-native architecture, Infrastructure as Code (IaC), and secure NoSQL databases.
+* **Tech Stack:** AWS (Lambda, S3, DynamoDB), Terraform (HCL), IAM Security.
+* **Impact:** Replaced manual AWS Console clicking by provisioning a complete serverless data pipeline and custom VPC network with a single terminal command.
 
-## 🚀 Quick Start Instructions
+---
 
-### Running Phase 1
-```bash
-cd Phase1-Container-Stream
-chmod +x setup.sh && ./setup.sh
-```
+## 📂 Academic Foundations & University Projects
+Beyond DevOps and Cloud Infrastructure, this repository houses my computer science coursework demonstrating core programming mastery:
 
-### Running Phase 2
-```bash
-cd Phase2-Cloud-Serverless
-terraform init && terraform apply
-```
+* **`/CSS-200T`:** Core university algorithms and computational logic modules.
+* **`/Inventory-Automation`:** Original file-based logistics processing script.
+* **`/Network-Infrastructure`:** Socket programming, protocol handlers, and local web crawlers.
 
+---
 
+## 🛠️ Global Quick Start
 
+Detailed architecture breakdowns and deployment steps are located within each dedicated project directory:
+* For local container execution guides, view the [Phase 1 README](./Phase1-Container-Stream).
+* For automated cloud deployment scripts, view the [Phase 2 README](./Phase2-Cloud-Serverless).
