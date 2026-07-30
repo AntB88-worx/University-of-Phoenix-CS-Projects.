@@ -35,6 +35,12 @@ jobs:
         pip install bandit
         bandit -r ./Phase1-Container-Stream ./Phase2-Cloud-Serverless -s B311
 
+    # 📁 Automatically install the Terraform CLI binary on the remote Linux cloud server
+    - name: Setup Terraform CLI
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: "1.7.0"
+
     # Automated validation check: Ensures Terraform configurations match cloud credentials securely
     - name: Validate Terraform Infrastructure Plan
       run: |
