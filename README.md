@@ -2,7 +2,7 @@
 
 Welcome to my software engineering portfolio. This repository transitions from foundational programming concepts to modern DevOps pipelines and automated cloud infrastructure.
 
-🟢 **CI/CD Build Status:** `passing` | Automated Linux Runner Active
+🏃🏿‍♂️ **CI/CD Build Status:** 🟢 | Automated Linux Runner Active
 
 ---
 
