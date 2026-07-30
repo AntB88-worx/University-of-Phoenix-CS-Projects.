@@ -11,7 +11,7 @@ def display_logistics_planner(target_year, highlight_date=None, operational_mile
     
     # 1. FIXED HOLIDAY MATRIX: Define federal shipping carrier holiday dates (Month, Day)
     CARRIER_HOLIDAYS = {
-        "January":,    # New Year's Day
+    "January": "New Year's Day",
         "July":,       # Independence Day
         "November":,  # Thanksgiving (Approximate fixed shipping block)
         "December": [25]   # Christmas Day
