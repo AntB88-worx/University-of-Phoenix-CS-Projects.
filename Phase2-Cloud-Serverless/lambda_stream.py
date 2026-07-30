@@ -1,6 +1,7 @@
 import json
 import time
 import urllib.request
+from urllib.parse import urlparse
 
 def lambda_handler(event, context):
     print("🛰️ Ingesting Real-World Logistics Weather Telemetry!")
@@ -9,6 +10,11 @@ def lambda_handler(event, context):
     api_url = "https://open-meteo.com"
     
     try:
+        # Remediate Bandit B310: Explicitly validate the URL scheme before connection
+        parsed_url = urlparse(api_url)
+        if parsed_url.scheme not in ('http', 'https'):
+            raise ValueError(f"Disallowed URL scheme: {parsed_url.scheme}")
+
         # Perform live HTTP network fetch
         with urllib.request.urlopen(api_url, timeout=5) as response:
             raw_data = json.loads(response.read().decode())
