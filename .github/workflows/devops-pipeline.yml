@@ -10,7 +10,6 @@ jobs:
   validate-and-build:
     runs-on: ubuntu-latest
 
-    # Inject your encrypted GitHub Secrets directly into the Linux environment variables
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -30,19 +29,17 @@ jobs:
         pip install flake8
         flake8 . --count --exclude=Core-Utilities,CSS-200T,Network-Infrastructure,Inventory-Automation --select=E9,F63,F7,F82 --show-source --statistics
 
-        # 🔒 DEVSECOPS STEP: Scan Python code for security bugs (Skipping random and urlopen warnings)
+    # 🔒 DEVSECOPS STEP: Explicitly skipping B311 and B310 to allow our safe public REST API configuration
     - name: Run Automated Security Scan (Bandit)
       run: |
         pip install bandit
         bandit -r ./Phase1-Container-Stream ./Phase2-Cloud-Serverless -s B311,B310
 
-    # 📁 Automatically install the Terraform CLI binary on the remote Linux cloud server
     - name: Setup Terraform CLI
       uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: "1.7.0"
 
-    # Automated validation check: Ensures Terraform configurations match cloud credentials securely
     - name: Validate Terraform Infrastructure Plan
       run: |
         cd Phase2-Cloud-Serverless
@@ -53,3 +50,4 @@ jobs:
       run: |
         cd Phase1-Container-Stream
         docker build -t inventory-stream-pipeline:latest .
+
