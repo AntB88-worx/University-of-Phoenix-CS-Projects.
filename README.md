@@ -1,34 +1,34 @@
 # Portfolio: Computer Science & Systems Engineering 🎓
 
-Combining academic foundations with modern DevOps and cloud infrastructure engineering.
+A detailed overview of projects highlighting the transition from local Python/Docker automation to AWS Cloud infrastructure.
 
-### 🌉 Bridge Skills: Operations & Technology
-- **Process Automation:** Translating logistics/inventory workflows into Python data scripts.
-- **Cross-Functional Communication:** Bridging business needs with technical engineering teams.
-- **Scalable Frameworks:** Applying supply chain scaling to digital cloud microservices.
+## 🚀 Technical Progression
 
----
+### Phase 1: Local Containerized Streams (`/Phase1-Container-Stream`)
+* **Core Tasks:** Developed Python inventory streams with in-memory data handling.
+* **DevOps:** Implemented containerization via Docker and automated deployment with Bash.
 
-## 🚀 Engineering Progression: From Local Script to Containerized Stream
+### Phase 2: Cloud Infrastructure & Serverless (`/Phase2-Cloud-Serverless`)
+* **Infrastructure as Code:** Built automated AWS provisioning using Terraform (`main.tf`).
+* **Serverless Engineering:** Deployed Lambda functions (`lambda_stream.py`) with S3 and DynamoDB integration.
 
-This project represents a structural transformation designed to master Linux systems, advanced data handling, and containerization.
+## 📂 Key Competencies
+* **Software Engineering:** Python (OOD, File I/O), Java (Data Structures).
+* **Networking/Automation:** Socket programming, web crawling, and automated scripting.
 
-### 🏗️ Architectural Evolution
-* **Phase 1 (Local I/O):** Developed a baseline Python automation script handling local file system reads/writes.
-* **Phase 2 (Memory & Stream Refactor):** Refactored the architecture to stream chunked live API data entirely in-memory via `inventory_stream.py`, eliminating heavy disk-I/O bottlenecks.
-* **Phase 3 (Containerization):** Authored a declarative `Dockerfile` to package the runtime environment, proving platform-agnostic execution and container literacy.
-* **Phase 4 (Automation):** Built a native Bash `setup.sh` script utilizing Linux CLI fundamentals to automatically configure execution permissions and launch the system pipeline.
+## 🚀 Quick Start Instructions
 
----
+### Running Phase 1
+```bash
+cd Phase1-Container-Stream
+chmod +x setup.sh && ./setup.sh
+```
 
-## 📂 Academic Highlights
-* **Software Engineering (Python):** Object-oriented design and file I/O simulations.
-* **Algorithm Optimization (Java):** Data structures, sorting, and efficiency.
-* **Network Infrastructure (Python):** Socket programming and web crawling.
+### Running Phase 2
+```bash
+cd Phase2-Cloud-Serverless
+terraform init && terraform apply
+```
 
----
 
-## 🛠️ Execution
-- **Standard Scripts:** `python script_name.py`
-- **Streaming Pipeline:** `./setup.sh` then `python inventory_stream.py`
 
