@@ -1,0 +1,37 @@
+name: DevOps & Cloud Infrastructure CI Pipeline
+
+# 1. Trigger this pipeline automatically on every push or pull request
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  validate-and-build:
+    # Run the automation on a fresh, isolated Ubuntu Linux cloud server
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Securely download your repository code onto the runner
+    - name: Checkout Code Repository
+      uses: actions/checkout@v4
+
+    # Step 2: Set up an optimized Python execution environment
+    - name: Initialize Python Runtime
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    # Step 3: Automatically check your Python code syntax for errors (Linting)
+    - name: Run Syntax and Quality Linting (Flake8)
+      run: |
+        pip install flake8
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+    # Step 4: Validate and build your Phase 1 Docker Image automatically
+    - name: Validate and Build Phase 1 Docker Image
+      run: |
+        cd Phase1-Container-Stream
+        docker build -t inventory-stream-pipeline:latest .
