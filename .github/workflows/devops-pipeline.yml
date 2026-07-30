@@ -10,6 +10,12 @@ jobs:
   validate-and-build:
     runs-on: ubuntu-latest
 
+    # Inject your encrypted GitHub Secrets directly into the Linux environment variables
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: 'us-east-1'
+
     steps:
     - name: Checkout Code Repository
       uses: actions/checkout@v4
@@ -24,11 +30,17 @@ jobs:
         pip install flake8
         flake8 . --count --exclude=Core-Utilities,CSS-200T,Network-Infrastructure,Inventory-Automation --select=E9,F63,F7,F82 --show-source --statistics
 
-        # 🔒 DEVSECOPS STEP: Scan Python code for security bugs/vulnerabilities (Skipping B311 crypto warning)
     - name: Run Automated Security Scan (Bandit)
       run: |
         pip install bandit
         bandit -r ./Phase1-Container-Stream ./Phase2-Cloud-Serverless -s B311
+
+    # Automated validation check: Ensures Terraform configurations match cloud credentials securely
+    - name: Validate Terraform Infrastructure Plan
+      run: |
+        cd Phase2-Cloud-Serverless
+        terraform init -upgrade
+        terraform validate
 
     - name: Validate and Build Phase 1 Docker Image
       run: |
