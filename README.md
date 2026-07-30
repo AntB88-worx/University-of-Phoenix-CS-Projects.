@@ -9,9 +9,15 @@ Combining academic foundations with modern DevOps and cloud infrastructure engin
 
 ---
 
-## 🚀 Advanced DevOps & Data Infrastructure
-* **Real-Time Data Streaming:** `inventory_stream.py` - Live API/HTTP chunk streaming in-memory.
-* **Infrastructure as Code:** `Dockerfile` & `setup.sh` - Containerization and automation.
+## 🚀 Engineering Progression: From Local Script to Containerized Stream
+
+This project represents a structural transformation designed to master Linux systems, advanced data handling, and containerization.
+
+### 🏗️ Architectural Evolution
+* **Phase 1 (Local I/O):** Developed a baseline Python automation script handling local file system reads/writes.
+* **Phase 2 (Memory & Stream Refactor):** Refactored the architecture to stream chunked live API data entirely in-memory via `inventory_stream.py`, eliminating heavy disk-I/O bottlenecks.
+* **Phase 3 (Containerization):** Authored a declarative `Dockerfile` to package the runtime environment, proving platform-agnostic execution and container literacy.
+* **Phase 4 (Automation):** Built a native Bash `setup.sh` script utilizing Linux CLI fundamentals to automatically configure execution permissions and launch the system pipeline.
 
 ---
 
