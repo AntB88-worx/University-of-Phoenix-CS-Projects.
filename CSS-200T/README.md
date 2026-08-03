@@ -1,10 +1,10 @@
-# 🐍 CSS-200T: Foundations of Computer Science
+# 🐍 Data Structures & Algorithmic Optimization (CSS-200T)
 
-Welcome to my academic directory for the CSS-200T course at the University of Phoenix. This folder contains foundational programming projects designed to master computational thinking, core data structures, and algorithmic logic.
+Welcome to my academic directory for computational engineering. This folder contains foundational programming projects designed to master computational thinking, core data structures, and algorithmic logic.
 
 ---
 
-### 🧠 Core Learning Objectives
+### 🧠 Core Engineering Objectives
 * **Control Flow:** Implementing complex conditional branching (`if/elif/else`), infinite loops (`for/while`), and cross-platform terminal clear-screen states.
 * **Functional Programming:** Modularizing code into clean, reusable functions, static methods, and automated business alert triggers.
 * **Data Typings:** Managing numerical data constraints, type casting, chronological deltas, and real-time screen rewrite wrappers (`\r`).
@@ -34,16 +34,14 @@ Welcome to my academic directory for the CSS-200T course at the University of Ph
 
 To run the Python automation scripts locally, execute the following commands via your terminal:
 
-```python
+```bash
 python labor_productivity.py
 python edi_manifest_optimizer.py
 ```
 
 To compile and execute the Java tracking components, use these commands:
 
-```java
+```bash
 javac ColdChainCompliance.java
 java ColdChainCompliance
 ```
-
-
