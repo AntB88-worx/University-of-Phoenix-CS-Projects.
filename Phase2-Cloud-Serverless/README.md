@@ -15,8 +15,14 @@ This sub-project demonstrates cloud engineering literacy by converting local str
 Provision the complete network, storage, database, and execution layer using a single automated lifecycle loop:
 
 ```bash
+# 1. Initialize the working directory and upgrade AWS provider modules
 terraform init -upgrade
-terraform apply --auto-approve
+
+# 2. Generate and review the execution plan to verify architecture metrics
+terraform plan
+
+# 3. Deploy the automated serverless data pipeline safely to AWS
+terraform apply -auto-approve
 ```
 
 To run your visualization dashboard locally once your infrastructure is active:
@@ -28,5 +34,5 @@ streamlit run dashboard.py
 To prevent long-term billing or active cloud resource consumption, tear down the environment safely with:
 
 ```bash
-terraform destroy --auto-approve
+terraform destroy -auto-approve
 ```
