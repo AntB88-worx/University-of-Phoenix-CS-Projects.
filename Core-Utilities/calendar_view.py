@@ -9,13 +9,13 @@ def display_logistics_planner(target_year, highlight_date=None, operational_mile
     # Generate the standard 12-month raw text grid for the target year
     full_year_text = cal.formatyear(target_year, w=2, l=1, c=6, m=3)
     
-    # 1. FIXED HOLIDAY MATRIX: Define federal shipping carrier holiday dates (Month, Day)
-    CARRIER_HOLIDAYS = {
-    "January": "New Year's Day",
-        "July":,       # Independence Day
-        "November":,  # Thanksgiving (Approximate fixed shipping block)
-        "December": [25]   # Christmas Day
-    }
+# 1. FIXED HOLIDAY MATRIX: Define federal shipping carrier holiday dates (Month, Day)
+CARRIER_HOLIDAYS = {
+    "January":,        # New Year's Day
+    "July":,           # Independence Day
+    "November":,      # Thanksgiving (Approximate fixed shipping block)
+    "December": [25]       # Christmas Day
+}
 
     # 2. MONTH-BY-MONTH PARSING LOGIC: Inject operations metadata dynamically
     for month_num in range(1, 13):
